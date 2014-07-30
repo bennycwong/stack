@@ -80,3 +80,6 @@ Stack::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 end
+
+ENV['TWITTER_KEY'] = "Aj6xkKn6Bt0YqQMSmrNphHXjV"
+ENV['TWITTER_SECRET'] = "EAGwCDUttvKF5Q8bYfGOhrNci2s83Cfxbv7WXOVQKYHifsbVTu"
