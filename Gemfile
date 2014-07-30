@@ -54,6 +54,9 @@ group :development, :test do
   gem 'capybara'
 end
 
+#Rails 4 deploy on heroku needs this gem
+gem 'rails_12factor', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
