@@ -19,10 +19,9 @@ gem 'memcachier'
 gem 'dalli'
 
 # Use SCSS for stylesheets
-gem 'foundation-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'sass-rails', '>= 3.2'
 gem 'autoprefixer-rails'
-gem 'sass-rails', '~> 4.0.0'
 
 
 # Use Uglifier as compressor for JavaScript assets
