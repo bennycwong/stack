@@ -1,0 +1,11 @@
+development:
+  consumer_id: jYsr58JmmXDAo9INZWmJDzt1F
+  consumer_secret: HHmWD4d6cMwBfe2RwbyeFL2nETxRuc5t9ZriVxe0l3udJHFvBq
+
+test:
+  consumer_id: jYsr58JmmXDAo9INZWmJDzt1F
+  consumer_secret: HHmWD4d6cMwBfe2RwbyeFL2nETxRuc5t9ZriVxe0l3udJHFvBq
+
+production:
+  consumer_id: jYsr58JmmXDAo9INZWmJDzt1F
+  consumer_secret: HHmWD4d6cMwBfe2RwbyeFL2nETxRuc5t9ZriVxe0l3udJHFvBq

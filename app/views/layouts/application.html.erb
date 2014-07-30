@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stack</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <% if @current_user %>
+
+    <div class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">SSTEST</a>
+        </div>
+        
+        <ul class="nav navbar-nav">
+            <li class=""><a href="/overview">Overview</a></li>
+            <li class=""><a href="/queries">Queries Log</a></li>
+        </ul>
+
+        <p class="navbar-text pull-right">Welcome <%=@current_user.name%> | <a href="/user">@<%=@current_user.nickname%></a> |  <%= link_to "Sign Out", signout_path %></p>
+        <%=image_tag @current_user.image, :class => "small-twitter-image pull-right"%> 
+   
+        <p>
+        </div>
+    </div>
+    <% end %>
+
+    <%if notice%>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong>Notice!</strong> <%= notice %>
+    </div>
+    <%end%>
+
+    <%= yield %>
+</body>
+</html>
