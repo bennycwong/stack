@@ -11,11 +11,11 @@ class OverviewController < ApplicationController
       @request = Request.recent_request("search", @search).cached.first
     else
 
-      @request = Request.new(:query_type => "search", :query => @search)
+      @request = Request.new(:query_type => "search", :query => @search, :query_size => 20)
       @request.save
     end
 
-    @request.tweets.take(20).each do |tweet|
+    @request.tweets.each do |tweet|
       @tweets << tweet
     end
 

@@ -21,13 +21,13 @@ class UserController < ApplicationController
       if Request.recent_request("user_timeline", @user_id).cached.any?
         @request = Request.recent_request("user_timeline", @user_id).cached.first
       else
-        @request = Request.new(:query_type => "user_timeline", :query => @user_id)
+        @request = Request.new(:query_type => "user_timeline", :query => @user_id, :query_size => 20)
         @request.save
       end
       
 
       @user = @userRequest.user_info 
-      @request.tweets.take(20).each do |tweet|
+      @request.user_timeline.each do |tweet|
         @tweets << tweet
       end
 

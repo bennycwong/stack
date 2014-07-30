@@ -34,3 +34,6 @@ Stack::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 end
+
+ENV['TWITTER_KEY'] = "jYsr58JmmXDAo9INZWmJDzt1F"
+ENV['TWITTER_SECRET'] = "HHmWD4d6cMwBfe2RwbyeFL2nETxRuc5t9ZriVxe0l3udJHFvBq"
