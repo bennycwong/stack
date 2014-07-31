@@ -58,4 +58,5 @@ OmniAuth.config.add_mock(:twitter, {
              :name => 'Benny Wong',
              :nickname => 'bwong337',
              :image => 'http://pbs.twimg.com/profile_images/432007368608473088/eNZmFU6I.jpeg'
-         })})
+         })
+  })

@@ -1,6 +1,6 @@
 class OverviewController < ApplicationController
-  before_filter :is_user_session?, only: [:show, :create, :index]
-
+  before_filter :is_user_session?, only: [:index, :show, :create]
+  
   def index
     #Defaults to Stack Social if no search is passed
     redirect_to :controller => 'overview', :action => 'show', :id => "StackSocial"
