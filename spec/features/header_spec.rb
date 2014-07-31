@@ -61,7 +61,7 @@ feature "Header Features" do
     find(:xpath, '//p[@class="navbar-text pull-right"]//a[@href="/signout"]').click  
     expect(page).not_to have_selector(:xpath, '//li[@class="active"]//a[@href="/user"]') 
     expect(page).to have_text("Sign in with Twitter")
-    
+
   end
 
 
