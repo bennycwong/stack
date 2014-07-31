@@ -15,15 +15,9 @@ feature "Overview Features" do
     expect(page).to have_selector("#user-page")
   end
 
-  # scenario "User clicks on the tweet full name" do
-  #   find(:xpath, '//a[@id="fullname-0"]').click
-  # end
-
   scenario "User clicks on the first tweet body hashtag" do
     first(:xpath, '//a[@class="tweet-hashtag"]').click
-
     expect(page).to have_selector("#overview-page")    
-
   end
 
   scenario "User clicks on the first tweet body nickname" do

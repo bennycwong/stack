@@ -5,7 +5,7 @@ feature "Users Page Features" do
     DatabaseCleaner.clean
     visit root_url
     click_link "Sign in with Twitter"
-    visit user_path("bwong337")
+    visit '/user/bwong337'
   end
   after :each do
     DatabaseCleaner.clean
@@ -23,6 +23,12 @@ feature "Users Page Features" do
 
   scenario "User clicks on the first tweet body nickname" do
     first(:xpath, '//a[@class="tweet-screen-name"]').click
+    expect(page).to have_selector("#user-page")
+  end
+
+  scenario "User with no tweets loads" do
+    request = FactoryGirl.create(:request, :user_with_no_tweets)
+    visit '/user/'+request.query
     expect(page).to have_selector("#user-page")
   end
 
