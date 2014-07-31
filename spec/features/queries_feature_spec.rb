@@ -24,9 +24,7 @@ feature "Query Features" do
   scenario "Query is logged again after 5 minutes" do
     request = FactoryGirl.create(:request, :created_at => Time.now-6.minutes)
     visit '/overview/bwong337'
-
     find(:xpath, '//a[@href="/queries"]').click  
-
     expect(page.find(:xpath, '//td[@id="query-0"]')).to have_content("bwong337")
     expect(page.find(:xpath, '//td[@id="query-1"]')).to have_content("bwong337")
   end
@@ -34,16 +32,10 @@ feature "Query Features" do
   scenario "Query is not logged again before 5 minutes" do
     request = FactoryGirl.create(:request, :created_at => Time.now-5.minutes+10)
     visit '/overview/bwong337'
-
     find(:xpath, '//a[@href="/queries"]').click  
-
     expect(page.find(:xpath, '//td[@id="query-0"]')).to have_content("bwong337")
     expect(page.find(:xpath, '//td[@id="query-1"]')).not_to have_content("bwong337")
   end
-  
-
-
-
 
 end
 

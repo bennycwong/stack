@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="queries-page">
 	<div class="row center">
 
 		<div class="col-md-2"></div>
@@ -16,15 +16,15 @@
 				</thead>
 				<tbody>
 
-				  <% @requests.each do |request| %>
+				  <% @requests.each_with_index do |request, index| %>
 					<tr>
-						<td>
+						<td id="query_type-<%=index%>">
 							<%= request.query_type%>
 						</td>
-						<td>
+						<td id="query-<%=index%>">
 							<%= request.query%>
 						</td>
-						<td>
+						<td id="query_time-<%=index%>">
 							<%= %>
 							<%=distance_of_time_in_words(DateTime.parse(request.created_at.to_s),DateTime.now)%> ago
 						</td>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="user-page">
 	<div class="row">
 		<div class="col-sm-3">
 			<div class="row center">
@@ -16,18 +16,21 @@
 		<div class="col-sm-6">
 			<div class="row center" style="background-color:#fff;">
 				<% @tweets.each_with_index do |tweet, index|%>
-	
-					<div class="col-xs-12" style="background-color:#ccc;">
+					
+					<%= render :partial => '/layouts/modal', :locals =>{
+						:tweet => tweet,
+						:index => index
+					}
+					%>
+
+					<div class="col-xs-12 tweet-<%=index%>" style="background-color:#ccc;">
 						<div class="col-xs-2"><br>
 						<%=image_tag tweet.user.profile_image_url%><br>
 						</div>
 						<div class="col-xs-10">
 						<br>
-						
-
-						<%=link_to tweet.user.name, user_path(:id => tweet.user.screen_name) %> - <%=link_to "@"+tweet.user.screen_name, user_path(:id => tweet.user.screen_name) %> - <%=distance_of_time_in_words(DateTime.parse(tweet.created_at.to_s),DateTime.now)%> ago<br>
+						<%=link_to tweet.user.name, "#", :data => {:toggle => "modal", :target =>"#myModal"+index.to_s}, :id=>'fullname-'+index.to_s %> - <%=link_to "@"+tweet.user.screen_name, user_path(:id => tweet.user.screen_name), :id=> 'nickname-'+index.to_s %> - <%=distance_of_time_in_words(DateTime.parse(tweet.created_at.to_s),DateTime.now)%> ago<br>
 						<p><%= auto_link(tweet.text).html_safe %></p><br>
-						
 						</div>
 					</div>
 					<div class="col-xs-12" style="background-color:#fff;">

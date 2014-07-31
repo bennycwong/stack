@@ -8,6 +8,7 @@ RSpec.describe OverviewController, :type => :controller do
 
 	after :each do
     DatabaseCleaner.clean
+    controller.class.before_filter :is_user_session?
 	end
    
 	
