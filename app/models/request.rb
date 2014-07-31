@@ -1,9 +1,16 @@
 class Request < ActiveRecord::Base
-	
+	validates :query_type ,presence: true
+	validates :query ,presence: true
+	before_save :default
+
+	def default
+	  self.query_size ||= 20
+	end
+
 	scope :cached, -> {  where('created_at > ?', Time.now - 5.minutes) }
 	
-	def self.recent_request(query_type, query)
-		self.where(:query_type => query_type, :query => query)
+	def self.cached_request(query_type, query)
+		self.where(:query_type => query_type, :query => query).cached
 	end
 
   def user_info

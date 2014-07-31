@@ -9,8 +9,8 @@ class OverviewController < ApplicationController
   def show
     @overview = "active"
   	@search = params[:id] 
-    if Request.recent_request("search", @search).cached.any?
-      @request = Request.recent_request("search", @search).cached.first
+    if Request.cached_request("search", @search).any?
+      @request = Request.cached_request("search", @search).first
     else
       @request = Request.new(:query_type => "search", :query => @search, :query_size => 20)
       @request.save

@@ -11,8 +11,8 @@ class UserController < ApplicationController
       @user_id = params[:id] 
      
 
-      if Request.recent_request("user_timeline", @user_id).cached.any?
-        @request = Request.recent_request("user_timeline", @user_id).cached.first
+      if Request.cached_request("user_timeline", @user_id).any?
+        @request = Request.cached_request("user_timeline", @user_id).first
       else
         @request = Request.new(:query_type => "user_timeline", :query => @user_id, :query_size => 20)
         @request.save
@@ -30,8 +30,8 @@ private
       tweets[0].user
     rescue
       #In the rare case that there is a user but they have no posts
-        if Request.recent_request("user", @user_id).cached.any?
-          userRequest = Request.recent_request("user", @user_id).cached.first
+        if Request.cached_request("user", @user_id).cached.any?
+          userRequest = Request.cached_request("user", @user_id).cached.first
         else
           userRequest = Request.new(:query_type => "user", :query => @user_id)
           userRequest.save

@@ -1,23 +1,39 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :requests do
+  factory :request do
     	query "bwong337"
-    trait :cached_search do
-    	query "bieber"
-    	query_type "search"
-    end
+      query_size "20"
+      query_type "search"
+
     
     trait :search do
-    	query "USMNT"
-    	query_type "search"
+    	query "StackSocial"
     end
-    trait :user_timeline do
 
+    trait :user_timeline do
     	query_type "user_timeline"
     end
     trait :user_info do
     	query_type "user"
+    end
+
+    trait :cached_search do
+      query "bieber"
+    end
+
+    trait :nil_size do
+      query_size nil
+    end
+
+    trait :non_default_size do
+      query_size 40
+    end
+
+    trait :user_with_no_tweets do
+      query "missprisci"
+      query_type "user"
+
     end
 	end
 end
