@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :queries
-
+	validates :nickname ,presence: true
+	validates :uid, uniqueness: true
 	def self.create_with_omniauth(auth)
 		create! do |user|
 			user.provider = auth["provider"]

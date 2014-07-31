@@ -12,12 +12,13 @@
     <div class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">SSTEST</a>
+            <a class="navbar-brand" href="#">TweetReader</a>
         </div>
         
         <ul class="nav navbar-nav">
-            <li class=""><a href="/overview">Overview</a></li>
-            <li class=""><a href="/queries">Queries Log</a></li>
+            <li class="<%=active_navigation 'overview' %>"><a href="/overview">Overview</a></li>
+            <li class="<%=active_navigation 'user' %>"><a href="/user">User</a></li>
+            <li class="<%=active_navigation 'pages'%>"><a href="/queries">Queries Log</a></li>
         </ul>
 
         <p class="navbar-text pull-right">Welcome <%=@current_user.name%> | <a href="/user">@<%=@current_user.nickname%></a> |  <%= link_to "Sign Out", signout_path %></p>

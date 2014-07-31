@@ -1,7 +1,7 @@
 class Request < ActiveRecord::Base
 	
-	# scope :cached, lambda { where('created_at > ?', Time.now - 5.minutes) }
 	scope :cached, -> {  where('created_at > ?', Time.now - 5.minutes) }
+	
 	def self.recent_request(query_type, query)
 		self.where(:query_type => query_type, :query => query)
 	end

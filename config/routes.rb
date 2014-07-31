@@ -1,16 +1,12 @@
 Stack::Application.routes.draw do
 
   # match "user/:id" => "user#show", via: [:get]
-  # get "user/" => "user#index"
   resources :user do
     resources :show
   end
 
   resources :overview do
-    resources :index
     resources :show
-
-
   end
 
   get "/queries" => "pages#queries"
@@ -21,7 +17,6 @@ Stack::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

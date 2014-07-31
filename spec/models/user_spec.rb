@@ -1,5 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	
+	before :each do
+    DatabaseCleaner.clean
+	end
+	after :each do
+    DatabaseCleaner.clean
+  end
+
+  it "can be created"  do
+  	expect(FactoryGirl.create(:user)).to be_valid
+  end
+
+  it "is invalid without a nickname" do
+  	expect(FactoryGirl.build(:user, :no_nickname)).not_to be_valid
+  end
+
+  it "can not have duplicate uids" do
+  	FactoryGirl.create(:user)
+  	expect(FactoryGirl.build(:user)).not_to be_valid
+  end
+
+	  
 end

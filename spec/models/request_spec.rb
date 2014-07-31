@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Request, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	before :each do
+    DatabaseCleaner.clean
+	end
+
+  it "can be created"  do
+  	# expect(FactoryGirl.create(:user)).to be_valid
+  end
+
+  it "is invalid without a nickname" do
+  	# expect(FactoryGirl.build(:user, :no_nickname)).not_to be_valid
+  end
+  
 end

@@ -50,8 +50,16 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'guard-rspec', require: false
-  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem "better_errors"
 end
+
+group :test do
+	gem 'capybara' 
+	gem 'guard-rspec' 
+	gem 'launchy' 
+  gem 'database_cleaner'
+end 
 
 #Rails 4 deploy on heroku needs this gem
 gem 'rails_12factor', group: :production

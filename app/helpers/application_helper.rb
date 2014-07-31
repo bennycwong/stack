@@ -1,6 +1,10 @@
 module ApplicationHelper
 
   include Twitter::Extractor
+
+  def active_navigation(item)
+    'active' if params[:controller] == item
+  end
   
   def auto_link(tweet)
     screen_names = extract_mentioned_screen_names(tweet)

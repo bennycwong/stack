@@ -1,31 +1,24 @@
 class OverviewController < ApplicationController
-  before_filter :is_user_session?, only: [:show]
+  before_filter :is_user_session?, only: [:show, :create, :index]
+
   def index
-    redirect_to :controller => 'overview', :action => 'show', :id => "USMNT"
+    #Defaults to Stack Social if no search is passed
+    redirect_to :controller => 'overview', :action => 'show', :id => "StackSocial"
   end
 
   def show
+    @overview = "active"
   	@search = params[:id] 
-  	@tweets = []
     if Request.recent_request("search", @search).cached.any?
       @request = Request.recent_request("search", @search).cached.first
     else
-
       @request = Request.new(:query_type => "search", :query => @search, :query_size => 20)
       @request.save
     end
-
-    @request.tweets.each do |tweet|
-      @tweets << tweet
-    end
-
-    respond_to do |format|
-      format.html 
-      format.json { render json: [:tweets => @tweets] }
-    end
-    
+    @tweets = @request.tweets  
   end
 
+  #Post in form to handle search
   def create
     redirect_to :action => 'show', :id => params[:id] 
   end

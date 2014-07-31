@@ -2,21 +2,14 @@ class UserController < ApplicationController
   before_filter :is_user_session?, only: [:index, :show]
 
   def index
+    #redirect to self if no user is found
     redirect_to :controller => 'user', :action => 'show', :id => current_user.nickname
   end
 
   def show
-    puts @user_id = params[:id] 
-    #begin
-      @tweets = []
-      @user = []
-
-      if Request.recent_request("user", @user_id).cached.any?
-        @userRequest = Request.recent_request("user", @user_id).cached.first
-      else
-        @userRequest = Request.new(:query_type => "user", :query => @user_id)
-        @userRequest.save
-      end
+      @user_page = "active"
+      @user_id = params[:id] 
+     
 
       if Request.recent_request("user_timeline", @user_id).cached.any?
         @request = Request.recent_request("user_timeline", @user_id).cached.first
@@ -24,20 +17,28 @@ class UserController < ApplicationController
         @request = Request.new(:query_type => "user_timeline", :query => @user_id, :query_size => 20)
         @request.save
       end
+
+      @tweets = @request.user_timeline
+      @user = get_user_info(@tweets)
+
+  end
+
+private
+
+  def get_user_info(tweets)
+    begin 
+      tweets[0].user
+    rescue
+      #In the rare case that there is a user but they have no posts
+        if Request.recent_request("user", @user_id).cached.any?
+          userRequest = Request.recent_request("user", @user_id).cached.first
+        else
+          userRequest = Request.new(:query_type => "user", :query => @user_id)
+          userRequest.save
+        end
+      userRequest.user_info
+    end
+  end
       
 
-      @user = @userRequest.user_info 
-      @request.user_timeline.each do |tweet|
-        @tweets << tweet
-      end
-
-      respond_to do |format|
-        format.html 
-        format.json { render json: [:tweets => @tweets, :user => @user] }
-      end
-
-    #rescue
-   #   redirect_to user_path, notice: "Could not find user @" + @user_id + ". Redirected to user page."
-   # end
-  end
 end
