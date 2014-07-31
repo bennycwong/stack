@@ -9,11 +9,6 @@ RSpec.describe HomeController, :type => :controller do
     end
   end
 
-  describe "GET index if logged in" do
-    it "returns http success" do
-      get :index
-      expect(response).to be_success
-    end
-  end
+  
 
 end

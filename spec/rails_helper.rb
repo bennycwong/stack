@@ -21,10 +21,12 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  config.include Capybara::DSL
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -45,3 +47,15 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+OmniAuth.config.add_mock(:twitter, {
+  :provider => 'twitter', 
+  :uid => '562620090',
+  :credentials => OmniAuth::AuthHash::InfoHash.new({
+             :token => '562620090-Y9TN9AMa6T9MXFuGmvQ0m0W1GzFgqrlyFYTpuOki',
+             :secret => 'f8Vl2jHfe7zXwLPiUvvy4fn9P7h0VL5D3uO3u6OGfa9aZ'
+         }),
+  :info => OmniAuth::AuthHash::InfoHash.new({
+             :name => 'Benny Wong',
+             :nickname => 'bwong337',
+             :image => 'http://pbs.twimg.com/profile_images/432007368608473088/eNZmFU6I.jpeg'
+         })})
