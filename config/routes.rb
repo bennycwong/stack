@@ -6,6 +6,7 @@ Stack::Application.routes.draw do
   end
 
   resources :overview do
+    post :create
     resources :show
   end
 
